@@ -6,6 +6,8 @@ This document describes:
 - the identifier of the use case;
 - the governance;
 - the information standards;
+- presentation definition for UCL/ Service Discovery
+- presentation definition for data requests
 - the permitted means of authentication;
 - the permitted bases;
 - naming of actors; and
@@ -27,6 +29,15 @@ The identifier of the use case is 'homemonitoring'.
 - The structure of the data to be exchanged and the data interfaces to be used comply with the BgZ medisch-specialistische zorg Technical Implementation Guide 1.0: https://informatiestandaarden.nictiz.nl/wiki/BgZ:V1.0_BgZ_2017_Technical_IG
 - Unstructured documents containing health information are exchanged using the MedMij FHIR Implementation Guide: PDF/A 3.0.37L https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_PDFA#List_of_profiles
 - Reports of Contacts ("Naslag"): t.b.d.
+
+# presentation definition for UCL/ Service Discovery
+Parties that support the usae case "zorginzage-homemonring" can register themselves at a discovery service. This is done by presenting a verifiable presentation.
+This is done by presenting a verifiable presentation uses the following attributes:
+
+The following presenttaion definition is needed:
+
+
+# presentation definition for data requests
 
 # Permitted means of authentication of healthcare professionals
 In order to share data securely between different healthcare providers, cross-organizatonal authentication of healthcare professionals is essential. For this use case the following means of healthcare professional authentication are permitted:
@@ -56,6 +67,10 @@ The following evidence is allowed for 'implicit consent':
 
 # Access Policy
 One aspect of a Nuts Application involves describing authorizations to certain resources. Authorizations are described in an access policy. It is the responsibility of the Sending System to adhere to the policy when resources are being requested.
+
+<<Separate access policy for 
+resources that support the workflow patterns (e.g. Task, ServiceRequest) and resources that represent the composition of the care network on the one hand (e.g. CarePlan, CarePlan),
+and resources that represent the medical record itself (e.g. Observation, Condition, Procedure?, EpisodeOfCare?)
 
 This Nuts Application involves three different access policies: 
 - homemonitoring-placer
