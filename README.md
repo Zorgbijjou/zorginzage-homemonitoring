@@ -9,9 +9,10 @@ This document describes:
 - presentation definition for UCL/ Service Discovery
 - presentation definition for data requests
 - the permitted means of authentication;
-- the permitted bases;
-- naming of actors; and
-- the access policy.
+- the permitted legal bases;
+- naming of actors;
+- the access policy; and
+- sequence diagram
 
 # functional processes
 A head practitioner from organization HPO sends a request to organization MSC to perform home monitoring services for patient P.
@@ -326,3 +327,14 @@ The second column describes how the requests must be executed by the Sending Sys
 | GET [base]/ImmunizationRecommendation                                                    | GET [base]/ImmunizationRecommendation<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                       |
 | GET [base]/DeviceRequest?status=active&_include=DeviceRequest:device                     | GET [base]/DeviceRequest?status=active&_include=DeviceRequest:device<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                        |
 | GET [base]/Appointment?status=booked,pending,proposed                                    | GET [base]/Appointment?status=booked,pending,proposed<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                       |
+
+
+
+
+Sequence Diagram
+
+Als iemand binnen thuis-organisatie C de data wil inzien van ziekenhuis B, zullen de systemen van organisatie C, organisatie B en de Care Plan/Team Service (organisatie A) moeten interacteren met elkaar. Dit wordt in het volgende sequence beschreven. Doel hiervan is om de individuele transacties per systeem en de lokalisatie van data inzichtelijk te maken. Enkele stappen als de user-authenticatie, ophalen van de autorisatieserver-url of de access-token validatie zijn weggelaten om het schema overzichtelijk te houden.
+
+![Alt text]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://github.com/SanteonNL/shared-care-planning/blob/main/input/images/example1-retrievingdata.png) "a title")
+
+[TODO: beschrijving per stap].
