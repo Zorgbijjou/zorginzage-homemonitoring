@@ -335,6 +335,6 @@ Sequence Diagram
 
 Als iemand binnen thuis-organisatie C de data wil inzien van ziekenhuis B, zullen de systemen van organisatie C, organisatie B en de Care Plan/Team Service (organisatie A) moeten interacteren met elkaar. Dit wordt in het volgende sequence beschreven. Doel hiervan is om de individuele transacties per systeem en de lokalisatie van data inzichtelijk te maken. Enkele stappen als de user-authenticatie, ophalen van de autorisatieserver-url of de access-token validatie zijn weggelaten om het schema overzichtelijk te houden.
 
-![Alt text]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://github.com/SanteonNL/shared-care-planning/blob/main/input/images/example1-retrievingdata.png) "a title")
+![Alt text](https://github.com/SanteonNL/shared-care-planning/blob/main/input/images/example1-retrievingdata.png?raw=true "a title")
 
 [TODO: beschrijving per stap].
