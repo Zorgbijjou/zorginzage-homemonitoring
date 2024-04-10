@@ -64,8 +64,18 @@ The following presentation definition is needed:
         "id": "pd_university_type",
         "constraints": {
           "fields": [
-            { "path": ["$.type"], "filter": { "type": "string", "const": "UniversityCredential" } },
-            { "path": "$.credentialSubject.name", "filter": { "type": "string" } } ]
+            { "path": ["$.type"],
+              "filter": {
+                "type": "string",
+                "const": "UniversityCredential"
+              }
+            },
+            { "path": "$.credentialSubject.name",
+              "filter": {
+                "type": "string"
+              }
+            }
+          ]
         }
       }
     ]
