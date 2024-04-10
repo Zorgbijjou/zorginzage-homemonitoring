@@ -1,5 +1,5 @@
 # Introduction
-This document describes how to use the Nuts-specifications in the context of home monitoring. This includes the specific agreements that, in addition to the specifications "workflow/ notified pull" and "data/ zorginzage 2024", apply to the use case of home monitoring.
+This document describes how to use the Nuts-specifications and Shared Care Planning in the context of home monitoring. This includes the specific agreements that, in addition to the Nuts-specifications "workflow/ notified pull" and "data/ zorginzage 2024" and the Shared Care Planning Implementation Guide, apply to the use case of home monitoring.
 
 This document describes:
 - the specific functional processes
@@ -15,30 +15,71 @@ This document describes:
 - sequence diagram
 
 # functional processes
+A general practitioner from organization GP sends a referral request to organization HPO for the treament of patient P.
+A head practitioner from organization HPO needs access to data that resides in GP to do her/his job.
 A head practitioner from organization HPO sends a request to organization MSC to perform home monitoring services for patient P.
-A home monitoring professional (commonly referred to as eNurse) works in a medical service center. The eNurse needs access to data that resides in the HPO to do her/his job.
+A home monitoring professional (commonly referred to as eNurse) works in a medical service center. The eNurse needs access to data that resides in HPO and in GP to do her/his job.
 
 # use case identifier
-The identifier of the use case is 'homemonitoring'.
+The identifier of the use case is 'zorginzage-homemonitoring'.
 
 # Governance
-- Information standards are developed and maintained by standardization organization Nictiz
+- Information standards for the medical data are developed and maintained by Zorg bij Jou and based on national informayion standards developed and maintained by Nictiz
+- Information standards for the composition of the care network (e.g. CarePlan, CareTeam) are developeed and maintained by IHE ([IHE-DCP chapter 6.6](http://ihe.net/uploadedFiles/Documents/PCC/IHE_PCC_Suppl_DCP.pdf))
+- The Shared Care Planning Implementation Guide is developed and maintained by Santeon
+- The Nuts-specifications are developed and maintained by the Nuts foundation
 - This specification is developed and maintained by [Zorg bij Jou](https://www.zorgbijjou.nl) in collaboration with Santeon
 
 # Information standards
-- The content and structure of the information to be exchanged complies with the Functioneel Ontwerp BgZ medisch-specialistische zorg 1.0: https://informatiestandaarden.nictiz.nl/wiki/BgZ:V1.0_BgZ_MSZ_Informatiestandaard
+- The content and structure of the medical information to be exchanged comply with the Functioneel Ontwerp BgZ medisch-specialistische zorg 1.0: https://informatiestandaarden.nictiz.nl/wiki/BgZ:V1.0_BgZ_MSZ_Informatiestandaard
 - The structure of the data to be exchanged and the data interfaces to be used comply with the BgZ medisch-specialistische zorg Technical Implementation Guide 1.0: https://informatiestandaarden.nictiz.nl/wiki/BgZ:V1.0_BgZ_2017_Technical_IG
 - Unstructured documents containing health information are exchanged using the MedMij FHIR Implementation Guide: PDF/A 3.0.37L https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_PDFA#List_of_profiles
-- Reports of Contacts ("Naslag"): t.b.d.
+- The content and structure of resources that represent the composition of the care network (e.g. CarePlan, CareTeam) comply with chapter 6.6 of the [IHE-DCP profile](http://ihe.net/uploadedFiles/Documents/PCC/IHE_PCC_Suppl_DCP.pdf).
+- Tasks...
 
-# presentation definition for UCL/ Service Discovery
-Parties that support the usae case "zorginzage-homemonring" can register themselves at a discovery service. This is done by presenting a verifiable presentation.
-This is done by presenting a verifiable presentation uses the following attributes:
+# Presentation definition for UCL/ Service Discovery
+Parties that support the use case "zorginzage-homemonitoring" can register themselves at a discovery service to become discoverable. To do this the party presents a verifiable presentation to the discovery service.
+This verifiable presentation uses the following attributes:
+|attribute|description|
+|---------|-----------|
+|URA| Unique identifier of the organization|
+|medical data endpoint|absolute url of fhir endpoint for retrieving medical data|
+|CarePlanService endpoint|absolute url of fhir endpoint for the CarePlanService|
+- 
 
-The following presenttaion definition is needed:
+The following presentation definition is needed:
+<to do>
 
+# Service Discovery definition
+
+```json
+{
+  "id": "uc_homemonitoring_v1",
+  "endpoint": "https://example.com/usecase/university/v1",
+  "presentation_max_validity": 259200,
+  "presentation_definition": {
+    "id": "pd_homemonitoring",
+    "input_descriptors": [
+      {
+        "id": "pd_university_type",
+        "constraints": {
+          "fields": [
+            { "path": ["$.type"], "filter": { "type": "string", "const": "UniversityCredential" } },
+            { "path": "$.credentialSubject.name", "filter": { "type": "string" } } ]
+        }
+      }
+    ]
+  }
+}
+```
 
 # presentation definition for data requests
+Data users that want to send data requests to a data holder in the context of the use case "zorginzage-homemonitoring" need an access token from the data holder. The access token request requires the data user to present a verifiable presentation to the data holder. This verifiable presentation uses the following attributes:
+|attribute|description|
+|---------|-----------|
+|URA| Unique identifier of the data user organization|
+|Homemonitoring membership?| Do we need an attribute that says "this org supports the use case homemonitoring"?|
+|UZI| unique identifier op person that requests the data|
 
 # Permitted means of authentication of healthcare professionals
 In order to share data securely between different healthcare providers, cross-organizatonal authentication of healthcare professionals is essential. For this use case the following means of healthcare professional authentication are permitted:
@@ -49,169 +90,51 @@ In order to share data securely between different healthcare providers, cross-or
 # Permitted legal bases and evidence
 The following legal bases are supported for the use case medical specialist referral:
 - 'implicit consent'
-- 'explicit prior consent': not necessary because consent for data processing can be assumed when the patient has given informed consent to the head practitioner at organization HPO for the execution of home monitoring services by organiozation MSC
+- 'explicit prior consent': not necessary because consent for data processing can be assumed when the patient has given informed consent to the general practiioner for the referral to organization HPO and to the head practitioner at organization HPO for the execution of home monitoring services by organization MSC
 
 The following evidence is allowed for 'implicit consent':
+- registration in the source system used by the general practitioner
 - registration in the source system used by the head practitioner
 - verbal consent given to the head practitioner
 
 # Naming of actors
 
-| Actor name Notified Pull                  | Actor name BgZ referral                           |
-|-------------------------------------------|---------------------------------------------------|
-| ...                                       | ...                                               |
-| ...                                       | ...                                               |
+to do.
 
 # Data availability
 - Every party that offers services for the use case homemonitoring is responsible for the availability of its own infrastructure, the system and the Nuts-node.
-- Data holders ensure the availability of all components that are part of XXX in accordance with the requirements for Availability, Integrity and -Confidentiality as included in the article <<TO DO WAAR??>>.
+- Data holders ensure the availability of all components in accordance with the requirements for Availability, Integrity and Confidentiality as included in article <<TO DO>>.
 
 # Access Policy
-One aspect of a Nuts Application involves describing authorizations to certain resources. Authorizations are described in an access policy. It is the responsibility of the Sending System to adhere to the policy when resources are being requested.
+One aspect of a Nuts Application involves describing authorizations to certain resources. Authorizations are described in an access policy. It is the responsibility of the Data Holder System to adhere to the policy when resources are being requested. The use case homemonitoring involves three different access policies: 
+|policy name|description|
+|-----------|-----------|
+|homemonitoring-dataholder|The homemonitoring-dataholder policy controls access to actual medical data e.g. Observation, Condition, Procedure?, EpisodeOfCare?)|
+|homemonitoring-placer|The homemonitoring-filler policy controls data access necessary for sending workflow-requests related to home monitoring (e.g. sending an onboarding-request, MDT-request, medicationrequest or servicerequest) (e.g. CarePlan, CarePlan, Task, ServiceRequest)
+|homemonitoring-filler|The homemonitoring-filler policy controls data access necessary for receiving workflow-requests related to home monitoring (e.g. receiving onboarding-request, MDT-request, medicationrequest or servicerequest) (e.g. CarePlan, CarePlan, Task, ServiceRequest)
 
-<<Separate access policy for 
-resources that support the workflow patterns (e.g. Task, ServiceRequest) and resources that represent the composition of the care network on the one hand (e.g. CarePlan, CarePlan),
-and resources that represent the medical record itself (e.g. Observation, Condition, Procedure?, EpisodeOfCare?)
+## homemonitoring-dataholder Policy
 
-This Nuts Application involves three different access policies: 
-- homemonitoring-placer
-- homemonitoring-filler
-- homemonitoring-dataholder
-The homemonitoring-dataholder policy controls access to actual medical data. The homemonitoring-placer and homemonitoring-filler policies control data access necessary for workflows related to home monitoring (e.h. cross-organization onboarding, servicerequests, medicationrequests, ...).
+The homemonitoring-dataholder policy describes rules for personal resources that containt the actual medical data. For now, we stick to the resources present in the BgZ information standard.
 
-<DO NOT READ FURTHER REPLACE NEXT PARTS WITH actual info>>
+### Personal Resources (medical data resources)
 
-## The BgZ Receiver Policy
+#### Authorization record medical data resources
 
-The BgZ Receiver policy only describes access to the Notification Task endpoint. When requesting an access token from the authorization server, no [Nuts Authorization Credentials](https://nuts-foundation.gitbook.io/rfc/rfc014-authorization-credential) are required. No user details are required
-either. The `vcs` and `usi` claims in the [JWT](https://nuts-foundation.gitbook.io/rfc/rfc003-oauth2-authorization#id-4.2.2-payload) may be left empty. The `purposeOfUse` claim must contain `bgz-receiver`.
-
-The Receiving System must check whether an HTTP POST request is performed to the Notification Task endpoint. This is the relative path that is registered under the `notification` field in the `bgz-receiver` service.
-
-## The BgZ Sender Policy
-
-The BgZ Sender policy describes rules for both personal and non-personal resources. For non-personal resources, the same applies as for the BgZ Receiver policy: the `vcs` and `usi` claims may be left out from
-the [JWT](https://nuts-foundation.gitbook.io/rfc/rfc003-oauth2-authorization#id-4.2.2-payload).
-
-## Non-Personal Resources (Tasks)
-
-### Authorization Credential Task
-
-Retrieving the Workflow Task falls under the category of non-personal resources. Since this is about accessing a single resource, a [Nuts Authorization Credential](https://nuts-foundation.gitbook.io/rfc/rfc014-authorization-credential) is required.
-The credential must meet the following requirements:
-
-| Field                                     | Description                     |
-|-------------------------------------------|---------------------------------|
-| `issuer`                                  | Sending Organization DID        |
-| `credentialSubject.id`                    | Receiving Organization DID      |
-| `credentialSubject.purposeOfUse`          | `bgz-sender`                    |
-| `credentialSubject.legalBase.consentType` | `implied`                       |
-| `credentialSubject.resources`             | The specific Task: `/Task/[id]` |
-
-The Receiving System must check whether the incoming request is equal to:
-
-```
-GET [base]/Task/[id]
-```
-
-Where `[base]` represents the path registered under the `fhir` field in the `bgz-sender` service. The Sending System must check whether the used access token provides access to the requested Task resource.
-Both the Sending Organization and Receiving Organization must be included when requesting the access token.
-
-The BgZ Sender policy does not provide access to resources other than those resources listed in the credential. Two distinct Authorization Credentials must be created: one for the Task resources and one for the BgZ resources.
-The `resources` field of the Authorization Credential for the Task must contain the following values:
-
-```json
-{
-  "path": "/Task/[id]",
-  "operations": [
-    "read",
-    "update"
-  ],
-  "userContext": false
-}
-```
-
-Where `[id]` must be replaced by an actual ID. This part of the credential provides read and update access to the Task resource.
-
-When requesting the access token, the credential must be included in the `vcs` claim and meet the above-mentioned requirements.
-
-Part of the BgZ referral is that the Receiving Organization updates the Task status. This requires a PUT request.
-
-### Normative Expiration Date Task Authorization
-
-When creating an Authorization Credential, an end date must be set on the record using the `expirationDate` field. The end date must be primarily based on the patient's own preferences.
-The practitioner needs to ask the patient for the preferred duration of the consent. When the patient's preferences with regard to the duration of the consent are not registered, the following norms apply:
-
-- In case of "explicit prior consent" the end date of the authorization equals the current date plus 14 days;
-- In case of "implied consent" the end date of the authorization equals the current date plus 14 days.
-
-### Revoking the Task Authorization
-
-The Task resource authorization does not have to be revoked; it can simply expire since the Task contains no personal data.
-
-### Task Access Token
-
-When requesting the access token, the Authorization Credential must be included and meet the above-mentioned requirements. No user details have to be included in the `usi` claim.
-The `service` field in the credential must equal `bgz-sender`.
-
-Access token lifetime: 300 seconds (5 minutes).
-
-### Task Authentication Contract
-
-For access to the Task FHIR-resource(s) (`"userContext": false`), no user details have to be included in the `usi` claim.
-
-### Task Resource Field
-
-The `resources` field in the Authorization Credential must contain at least one element that contains a relative path to a FHIR Task resource:
-
-```json
-{
-  "path": "/Task/[id]",
-  "operations": [
-    "read",
-    "update"
-  ],
-  "userContext": false
-}
-```
-
-The following resource types may be included in the Authorization Credential: Task. Please see [Appendix: Workflow Task](#appendix-workflow-task) for more details.
-
-### Task Access Control
-
-The Sending System must only provide access to exactly those resource that are listed in the `resources` field in the Authorization Credential.
-When the Sending System processes an incoming request regarding a Task, access must be provided based on the resources listed in the Authorization Credential to:
-
-1. Task resources if any are included in the `resources` field of the Authorization Credential
-
-Data access is not controlled by practitioner role.
-
-### Task Search Narrowing
-
-The Sending System must not apply search narrowing to incoming requests for Task resources.
-The Receiving System must perform Task requests in the form of read requests on specific Task resource instances (conform `/Task/[id]`).
-
-## Personal Resources (BgZ Resources)
-
-### Authorization Credential BgZ Resources
-
-Pulling BgZ referral resources and all related data requires a registered authorization in the form of a [Nuts Authorization Credential](https://nuts-foundation.gitbook.io/rfc/rfc014-authorization-credential).
-The credential must meet the following requirements:
+Pulling medical data resources requires an authorization record that is registered in the data holder system. The record must meet the following requirements:
 
 | Field                                     | Description                                               |
 |-------------------------------------------|-----------------------------------------------------------|
-| `issuer`                                  | Sending Organization DID                                  |
-| `credentialSubject.id`                    | Receiving Organization DID                                |
-| `credentialSubject.purposeOfUse`          | `bgz-sender`                                              |
+| `credentialSubject.id`                    | Data user URA                                             |
+| `credentialSubject.purposeOfUse`          | `homemonitoring-datamonitoring`                           |
 | `credentialSubject.legalBase.consentType` | `implied`                                                 |
-| `credentialSubject.subject`               | BSN as OID: `urn:oid:2.16.840.1.113883.2.4.6.3.999999990` |
 
-The Sending System must check whether the used access token provides access to the requested Task resource. Both the Sending Organization and Receiving Organization are included when requesting the access token.
+The Dataholder System must check whether the used access token (and thus the presented URA) provides access to the requested resource. The URA of the Data User is included in the VP when requesting the access token.
 
-The BgZ Sender policy does not provide access to resources other than those resources listed in the credential. Two distinct Authorization Credentials will be created: one for the Task resources and one for the BgZ resources.
+The homemonitoring-dataholder policy does not provide access to resources other than those resources listed in the authorization record. 
 
-#### Resources
-The `resources` field in the Authorization Credential must contain at least one element that contains a relative path to a BgZ FHIR resource:
+##### Resources
+The `resources` field in the Authorization Record must contain at least one element that contains a relative path to a medical data FHIR resource:
 
 ```json
 {
@@ -223,10 +146,10 @@ The `resources` field in the Authorization Credential must contain at least one 
 }
 ```
 
-For all FHIR *search* operations that are part of the [MedMij FHIR Implementation Guide: BgZ](https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_BGZ_2017#PHR:_request_message), a rule must be included.
+For all FHIR *search* operations <--- ??SEARCH OF READ?? that are part of the [MedMij FHIR Implementation Guide: BgZ](https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_BGZ_2017#PHR:_request_message), a rule must be included.
 `/[path]` must be replaced by the FHIR type. `/[$operation]` must be replaced by a possibly mandatory operation, e.g., `$lastn`. `[?queries]` must be replace by possibly mandatory query parameters, e.g., `code=http://snomed.info/sct|365508006`.
 
-The following resource types may be included in the Authorization Credential:
+The following resource types may be included in the Authorization Record:
 
 - Patient
 - Coverage
@@ -252,9 +175,9 @@ The following resource types may be included in the Authorization Credential:
 
 Please see the [FHIR Implementation Guide BgZ](https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_BGZ_2017#PHR:_request_message) for more details.
 
-When requesting the access token, the credential must be included in the `vcs` claim and meet the above-mentioned requirements.
+When requesting the access token, the verifiable presentation must be included in the `vp` claim and meet the requirements of paragraph "presentation definition for data requests".
 
-### Normative End Date BgZ Resources Authorization
+#### Normative End Date medical data Resources Authorization
 
 When creating an Authorization Credential, an end date must be set on the record using the `expirationDate` field. The end date must be primarily based on the patient's own preferences.
 The practitioner needs to ask the patient for the preferred duration of the consent. When the patient's preferences with regard to the duration of the consent are not registered, the following norms apply:
@@ -262,76 +185,138 @@ The practitioner needs to ask the patient for the preferred duration of the cons
 - In case of "explicit prior consent" the end date of the authorization equals the current date plus 14 days;
 - In case of "implied consent" the end date of the authorization equals the current date plus 14 days.
 
-### Revoking the BgZ Resources Authorization
+#### Revoking the medical data Resources Authorization
 
 When the BgZ referral is complete, it is no longer necessary for the Receiving Organization to pull resources. The Authorization Credential for the BgZ resources can then be revoked.
 
-State machine for revoking authorization for BgZ resources:
+State machine for revoking authorization for medical data resources:
 
 - When the Task status gets updated to `completed`, then
-    - the Sending Organization must revoke the Authorization Credential for the BgZ resources.
-- When the Receiving Organization forgets to complete the process, the Sending Organization may:
-    - revoke the Authorization Credential for the BgZ FHIR Resources after a reasonable period of time.
+    - the Placer Organization (which is the same as the Data Holder Organizatino) must revoke the Authorization for the medical data resources.
+- When the Filler Organization forgets to complete the process, the Placer Organization may:
+    - revoke the Authorization for the medical data FHIR Resources after a reasonable period of time.
 
-### Access Token BgZ FHIR Resources
+#### Access Token medical data FHIR Resources
 
 When requesting the access token, the Authorization Credential must be included and meet the above-mentioned requirements. User details must be included in the `usi` claim.
 The `service` field in the credential must equal `bgz-sender`.
 
 Access token lifetime: 300 seconds (5 minutes).
 
-### Authentication Contract BgZ FHIR Resources
+### Authentication Contract medical data FHIR Resources
 
-For access to the BgZ FHIR-resource(s) (`"userContext": true`), user details have to be included in the `usi` claim.
+For access to the medical data FHIR-resource(s) (`"userContext": true`), user details have to be included in the `usi` claim. <--- how to describe this using Nuts v6?
 
-### BgZ Resources Access Control
+### Medical data resources Access Control
 
-The Sending System must only provide access to exactly those resource that are listed in the `resources` field in the Authorization Credential.
-When the Sending System processes an incoming request regarding BgZ resources, access must be provided based on the resources listed in the Authorization Credential to:
-
-1. Patient resource for the patient whose BSN is included in the `credentialSubject.subject` field of the Authorization Credential
-2. Remaining resources if any are included in the `resources` field in the Authorization Credential
+The Dataholder System must only provide access to exactly those resources that are listed in the `resources` field in the Authorization Record.
+When the Dataholder System processes an incoming request regarding medical data resources, access must be provided based on the resources listed in the Authorization Record (ACL).
 
 Data access (in this particular Nuts Application) is not controlled by practitioner role.
 
 ### Search Narrowing
+no search narrowing??
 
-The Sending System must apply search narrowing. For incoming requests (e.g., `/Patient`) the following applies:
+## homemonitoring-placer Policy
 
-- The response only contains the requested resources for which the Receiving Organization is authorized based on the Authorization Credentials and the Access Policy;
-- The response has the expected format for the incoming request. E.g., an incoming `/Patient` or `/Observation` request must result in a Bundle response.
+The homemonitoring-placer policy describes rules for both personal and non-personal resources. 
+For non-personal resources, the `vcs` and `usi` claims may be left out from
+the [JWT](https://nuts-foundation.gitbook.io/rfc/rfc003-oauth2-authorization#id-4.2.2-payload) <--- what is Nuts v6 equivalent?
 
-The table below specifies how search narrowing must be applied. The first column describes the requests a Receiving Organization can perform.
-The second column describes how the requests must be executed by the Sending System in relation to the Authorization Credentials and the Access Policy.
+### Non-Personal Resources (Tasks, ActivityDefinition, Organization, ...)
 
-| Request to be sent by the Receiving System                                               | Request to be executed by the Sending System                                                                                                                                         |
-|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GET [base]/Patient                                                                       | <p>GET [base]/Patient?<b>identifier=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b></p><p>Result: \<\<Patient instance ID>></p>                        |
-| GET [base]/Patient?_include=Patient:general-practitioner                                 | GET [base]/Patient?_include=Patient:general-practitioner<b>&identifier=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                 |
-| GET [base]/Coverage?_include=Coverage:payor:Patient&_include=Coverage:payor:Organization | GET [base]/Coverage?_include=Coverage:payor:Patient&_include=Coverage:payor:Organization<b>&subscriber=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b> |
-| GET [base]/Consent                                                                       | GET [base]/Consent<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                                          |
-| GET [base]/Observation/$lastn?category=X                                                 | GET [base]/Observation/$lastn?category=X&<b>patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                    |
-| GET [base]/Condition                                                                     | GET [base]/Condition<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                                        |
-| GET [base]/Observation/$lastn?code=X                                                     | GET [base]/Observation/$lastn?code=X<b><b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b></b>                                                 |
-| GET [base]/NutritionOrder                                                                | GET [base]/NutritionOrder<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                                   |
-| GET [base]/Flag                                                                          | GET [base]/Flag<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                                             |
-| GET [base]/AllergyIntolerance                                                            | GET [base]/AllergyIntolerance<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                               |
-| GET [base]/MedicationStatement?category=X                                                | GET [base]/MedicationStatement?category=X<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                   |
-| GET [base]/MedicationRequest?category=X                                                  | GET [base]/MedicationRequest?category=X<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                     |
-| GET [base]/MedicationDispense?category=X                                                 | GET [base]/MedicationDispense?category=X<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                    |
-| GET [base]/DeviceUseStatement?_include=DeviceUseStatement:device                         | GET [base]/DeviceUseStatement?_include=DeviceUseStatement:device<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                            |
-| GET [base]/Immunization?status=completed                                                 | GET [base]/Immunization?status=completed<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                    |
-| GET [base]/Procedure?category=X                                                          | GET [base]/Procedure?category=X<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                             |
-| GET [base]/Encounter?class=X                                                             | GET [base]/Encounter?class=X<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                                |
-| GET [base]/ProcedureRequest?status=active                                                | GET [base]/ProcedureRequest?status=active<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                   |
-| GET [base]/ImmunizationRecommendation                                                    | GET [base]/ImmunizationRecommendation<b>?patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                                       |
-| GET [base]/DeviceRequest?status=active&_include=DeviceRequest:device                     | GET [base]/DeviceRequest?status=active&_include=DeviceRequest:device<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                        |
-| GET [base]/Appointment?status=booked,pending,proposed                                    | GET [base]/Appointment?status=booked,pending,proposed<b>&patient=http://fhir.nl/fhir/NamingSystem/bsn\|[BSN from Authorization Credential]</b>                                       |
+#### Authorization record for Task
 
+Retrieving the Workflow Task falls under the category of non-personal resources. Since this is about accessing a single resource, a VP conforming to paragraph "presentation definition for data requests" is required. But the element "UZI" can be left out.
 
+The Placer System must check whether the incoming request from the filler system is equal to:
 
+```
+GET [base]/Task/[id]
+```
 
-Sequence Diagram
+Where `[base]` represents the path registered under the `fhir` field in the `homemonitoring-placer` service. The Placer System must check whether the used access token provides access to the requested Task resource.
+??Both the Sending Organization and Receiving Organization must be included when requesting the access token.?? --> hoe to describe this using Nuts v6 equivalent?
+
+??The `resources` field of the Authorization Record for the Task must contain the following values:
+
+```json
+{
+  "path": "/Task/[id]",
+  "operations": [
+    "read",
+    "update"
+  ],
+  "userContext": false
+}
+```
+?? ---> how to replace this with Nuts v6 stuff?
+
+??Where `[id]` must be replaced by an actual ID. This part of the credential provides read and update access to the Task resource.
+
+When requesting the access token, the verifiable presentation must be included in the `vp` claim and meet the above-mentioned requirements.
+
+Part of the home monitoring workflow is that the Filler Organization updates the Task status. This requires a PUT request.
+
+#### Normative Expiration Date Task Authorization 
+
+When creating an Authorization Record for access to the Task, an end date must be set on the record using the `expirationDate` field. The end date must be primarily based on the patient's own preferences.
+The practitioner needs to ask the patient for the preferred duration of the consent. When the patient's preferences with regard to the duration of the consent are not registered, the following norms apply:
+- In case of "implied consent" the end date of the authorization equals the current date plus 14 days??
+- In case of "explicit prior consent" the end date of the authorization equals the current date plus 14 days??
+
+#### Revoking the Task Authorization
+
+The Task resource authorization does not have to be revoked; it can simply expire since the Task contains no personal data.
+
+#### Task Access Token
+
+When requesting the access token for access to the Task, the VP must be included and meet the above-mentioned requirements. No user details have to be included in the `usi` claim.
+??The `service` field in the credential must equal `bgz-sender`.
+
+Access token lifetime: 300 seconds (5 minutes).
+
+#### Task Authentication Contract
+
+For access to the Task FHIR-resource(s) (`"userContext": false`), no user details have to be included in the `usi` claim.
+
+#### Task Resource Field
+
+The `resources` field in the Authorization Credential must contain at least one element that contains a relative path to a FHIR Task resource:
+
+#### Task Access Control
+
+The Placer System must only provide access to exactly those resources that are listed in the `resources` field in the Authorization Record.
+When the Placer System processes an incoming request regarding a Task, access must be provided based on the resources listed in the Authorization Record to:
+
+1. Task resources if any are included in the `resources` field of the Authorization Record
+
+Data access is not controlled by practitioner role.
+
+#### Task Search Narrowing
+
+The Placer System must not apply search narrowing to incoming requests for Task resources.
+The Filler System must perform Task requests in the form of read requests on specific Task resource instances (conform `/Task/[id]`).
+
+### Personal Resources (CarePlan, CareTeam, )
+
+#### CarePlan
+Retrieving the CarePlan falls under the category of personal resources. A VP conforming to paragraph "presentation definition for data requests" is required. The element "UZI" must be filled.
+
+#### CareTeam
+Retrieving the CarePlan falls under the category of personal resources. A VP conforming to paragraph "presentation definition for data requests" is required. The element "UZI" must be filled.
+
+## homemonitoring-filler Policy
+
+The homemonitoring-filler policy describes rules for non-personal resources. 
+For non-personal resources, the `vcs` and `usi` claims may be left out from
+the [JWT](https://nuts-foundation.gitbook.io/rfc/rfc003-oauth2-authorization#id-4.2.2-payload) <--- what is Nuts v6 equivalent?
+
+The homemonitoring-filler policy only describes access to the Notification Task endpoint. When requesting an access token from the authorization server, no [Nuts Authorization Credentials](https://nuts-foundation.gitbook.io/rfc/rfc014-authorization-credential) <--- what is Nuts v6 equivalent? are required. No user details are required either. The `vcs` and `usi` claims in the [JWT](https://nuts-foundation.gitbook.io/rfc/rfc003-oauth2-authorization#id-4.2.2-payload) <--- what is Nuts v6 equivalent? may be left empty. The `purposeOfUse` claim must contain `homemonitoring-filler`.
+
+The Filler System must check whether an HTTP POST request is performed to the Notification Task endpoint. This is the relative path that is registered under the `notification` field in the `homemonitoring-filler` service.
+
+# Sequence Diagram
 
 Als iemand binnen thuis-organisatie C de data wil inzien van ziekenhuis B, zullen de systemen van organisatie C, organisatie B en de Care Plan/Team Service (organisatie A) moeten interacteren met elkaar. Dit wordt in het volgende sequence beschreven. Doel hiervan is om de individuele transacties per systeem en de lokalisatie van data inzichtelijk te maken. Enkele stappen als de user-authenticatie, ophalen van de autorisatieserver-url of de access-token validatie zijn weggelaten om het schema overzichtelijk te houden.
 
