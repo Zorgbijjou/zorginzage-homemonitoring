@@ -333,3 +333,9 @@ Als iemand binnen thuis-organisatie C de data wil inzien van ziekenhuis B, zulle
 ![Alt text](https://github.com/SanteonNL/shared-care-planning/blob/main/input/images/example1-retrievingdata.png?raw=true "a title")
 
 [TODO: beschrijving per stap].
+
+# Resources
+
+## Resources for use case Diabetes
+
+The following resources are relevant for the use case Diabetes.
