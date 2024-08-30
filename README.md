@@ -52,36 +52,10 @@ The following presentation definition is needed:
 
 # Service Discovery definition
 
-```json
-{
-  "id": "uc_homemonitoring_v1",
-  "endpoint": "https://example.com/usecase/university/v1",
-  "presentation_max_validity": 259200,
-  "presentation_definition": {
-    "id": "pd_homemonitoring",
-    "input_descriptors": [
-      {
-        "id": "pd_university_type",
-        "constraints": {
-          "fields": [
-            { "path": ["$.type"],
-              "filter": {
-                "type": "string",
-                "const": "UniversityCredential"
-              }
-            },
-            { "path": "$.credentialSubject.name",
-              "filter": {
-                "type": "string"
-              }
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
+- Development environment: TODO
+- Test environment: see `config/nuts/discovery/test:HomeMonitoring2024.json`
+- Acceptance environment: TODO
+- Production environment: TODO
 
 # presentation definition for data requests
 Data users that want to send data requests to a data holder in the context of the use case "zorginzage-homemonitoring" need an access token from the data holder. The access token request requires the data user to present a verifiable presentation to the data holder. This verifiable presentation uses the following attributes:
