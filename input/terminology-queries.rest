@@ -1,0 +1,33 @@
+# To query e.g. Snomed CT codes in the Dutch National Terminology Server using the VS-code RESTclient extention
+# read instructions on https://nictiz.nl/publicaties/national-terminology-server-manual-for-new-users/ to get username&password 
+
+# @nts-username = myusername
+# @nts-password = mypassword
+
+### 1) Get the token endpoint
+# @name gettokenendpoint
+GET https://terminologieserver.nl/auth/realms/nictiz/.well-known/openid-configuration
+
+### 2) Get an access token
+# @name getaccesstoken
+
+POST {{gettokenendpoint.response.body.token_endpoint}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=cli_client&username={{nts-username}}&password={{nts-password}}
+
+
+# 3) Use the access token to query the terminology server:
+
+### Lookup a code in a CodeSystem
+GET https://terminologieserver.nl/fhir/CodeSystem/$lookup?system=http://snomed.info/sct&code=13645005&property=designation
+Authorization: Bearer {{getaccesstoken.response.body.access_token}}
+
+### Expand an implicit Snomed ValueSet (Based on a Snomed ECL expression)
+GET https://terminologieserver.nl/fhir/ValueSet/$expand?url=http://snomed.info/sct?fhir_vs=ecl/<<195967001
+Authorization: Bearer {{getaccesstoken.response.body.access_token}}
+
+### Validate a code in a ValueSet
+
+GET https://terminologieserver.nl/fhir/ValueSet/$validate-code?url=https://terminologieserver.nl/uri/vs/snomed-netherlands-all_descriptions&system=http://snomed.info/sct&code=195967001
+Authorization: Bearer {{getaccesstoken.response.body.access_token}}

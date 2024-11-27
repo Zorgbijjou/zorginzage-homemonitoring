@@ -17,7 +17,7 @@
         "providedBy": {
           "identifier": {
             "system": "http://fhir.nl/fhir/NamingSystem/ura",
-            "value": "123"
+            "value": "86446"
           }
         },
         "category": [
@@ -62,27 +62,45 @@
           {
             "coding": [
               {
-                "code": "195111005",
+                "code": "84114007",
                 "system": "http://snomed.info/sct",
-                "display": "hartdecompensatie (aandoening)"
+                "display": "hartfalen (aandoening)"
               }
             ]
           },
           {
             "coding": [
               {
-                "code": "195111005",
+                "code": "195979001",
                 "system": "http://snomed.info/sct",
-                "display": "astma (aandoening)"
+                "display": "Asthma unspecified (disorder)"
               }
             ]
           },
           {
             "coding": [
               {
-                "code": "195111005",
+                "code": "304527002",
                 "system": "http://snomed.info/sct",
-                "display": "copd (aandoening)"
+                "display": "acuut astma (aandoening)"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "code": "389145006",
+                "system": "http://snomed.info/sct",
+                "display": "allergisch astma (aandoening)"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "code": "13645005",
+                "system": "http://snomed.info/sct",
+                "display": "chronische obstructieve longaandoening (aandoening)"
               }
             ]
           }
