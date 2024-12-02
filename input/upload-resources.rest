@@ -1,0 +1,15 @@
+###
+
+POST {{cps-base-url}}
+Content-Type: application/fhir+json
+Authorization: {{cps-access-token}}
+
+<@ fsh-generated/resources/Bundle-zbj-bundle-healthcareservices.json
+
+###
+
+POST {{cps-base-url}}
+Content-Type: application/fhir+json
+Authorization: {{cps-access-token}}
+
+<@ fsh-generated/resources/Bundle-zbj-bundle-questionnaires.json
