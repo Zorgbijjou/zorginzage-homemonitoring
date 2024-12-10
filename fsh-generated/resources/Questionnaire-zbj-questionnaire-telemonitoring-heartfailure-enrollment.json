@@ -10,6 +10,7 @@
     ]
   },
   "language": "nl-NL",
+  "url": "https://zorgbijjou.github.io/scp-homemonitoring/Questionnaire-zbj-telemonitoring-heartfailure-enrollment|0.3",
   "identifier": [
     {
       "system": "urn:oid:2.16.840.1.113883.2.4.3.224",
@@ -103,10 +104,18 @@
       "required": true,
       "answerOption": [
         {
-          "valueString": "Instabiel hartfalen"
+          "valueCoding": {
+            "code": "1951110051",
+            "system": "http://snomed.info/sct",
+            "display": "Instabiel hartfalen"
+          }
         },
         {
-          "valueString": "Stabiel hartfalen"
+          "valueCoding": {
+            "code": "195112003",
+            "system": "http://snomed.info/sct",
+            "display": "Stabiel hartfalen"
+          }
         }
       ]
     },
@@ -118,7 +127,9 @@
         {
           "question": "245f3b7e-47d2-4b78-b751-fb04f38b17b9",
           "operator": "=",
-          "answerString": "Instabiel hartfalen"
+          "answerCoding": {
+            "code": "1951110051"
+          }
         }
       ],
       "item": [
@@ -142,7 +153,11 @@
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "Titratie"
+              "valueCoding": {
+                "code": "117007006",
+                "system": "http://snomed.info/sct",
+                "display": "Titratie"
+              }
             }
           ]
         },
@@ -166,7 +181,11 @@
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "Recompensatie"
+              "valueCoding": {
+                "code": "195112003",
+                "system": "http://snomed.info/sct",
+                "display": "Recompensatie"
+              }
             }
           ]
         }
@@ -240,7 +259,11 @@
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "De patiënt is opgenomen geweest"
+              "valueCoding": {
+                "code": "266938001",
+                "system": "http://snomed.info/sct",
+                "display": "De patiënt is opgenomen geweest"
+              }
             }
           ]
         },

@@ -12,8 +12,8 @@
     "fshName": "zbj-bundle-questionnaires",
     "fshType": "Instance",
     "fshFile": "Questionnaire.fsh",
-    "startLine": 112,
-    "endLine": 118
+    "startLine": 108,
+    "endLine": 114
   },
   {
     "outputFile": "HealthcareService-zbj-healthcareservice-telemonitoring.json",
@@ -29,6 +29,6 @@
     "fshType": "Instance",
     "fshFile": "Questionnaire.fsh",
     "startLine": 1,
-    "endLine": 109
+    "endLine": 105
   }
 ]
