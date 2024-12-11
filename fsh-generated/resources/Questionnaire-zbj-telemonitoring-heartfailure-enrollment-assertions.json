@@ -140,7 +140,6 @@
     },
     {
       "linkId": "2f505566-ac92-4347-8731-840e6bc84851",
-      "text": "",
       "type": "group",
       "enableWhen": [
         {
@@ -203,7 +202,6 @@
     },
     {
       "linkId": "170292e5-3163-43b4-88af-affb3e4c27ab",
-      "text": "",
       "type": "group",
       "enableWhen": [
         {
@@ -294,7 +292,6 @@
             }
           ],
           "linkId": "345ca4a3-1bc8-4358-8d78-783c05953261",
-          "text": "",
           "code": [
             {
               "code": "404684003",

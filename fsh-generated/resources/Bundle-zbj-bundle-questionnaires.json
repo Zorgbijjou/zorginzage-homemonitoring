@@ -15,31 +15,6 @@
             }
           ]
         },
-        "contained": [
-          {
-            "resourceType": "ValueSet",
-            "id": "YesNo",
-            "name": "YesNo",
-            "title": "Yes/No",
-            "status": "draft",
-            "description": "Concepts for Yes and No",
-            "expansion": {
-              "timestamp": "2023-09-01T11:16:50+10:00",
-              "contains": [
-                {
-                  "system": "http://snomed.info/sct",
-                  "code": "373066001",
-                  "display": "Ja"
-                },
-                {
-                  "system": "http://snomed.info/sct",
-                  "code": "373067005",
-                  "display": "Nee"
-                }
-              ]
-            }
-          }
-        ],
         "language": "nl-NL",
         "title": "Vragenlijst voor aanmelding van patienten met hartfalen voor telemonitoring",
         "url": "https://zorgbijjou.github.io/scp-homemonitoring/Questionnaire-zbj-telemonitoring-heartfailure-enrollment|0.3",
@@ -183,7 +158,6 @@
           },
           {
             "linkId": "2f505566-ac92-4347-8731-840e6bc84851",
-            "text": "",
             "type": "group",
             "enableWhen": [
               {
@@ -270,7 +244,6 @@
           },
           {
             "linkId": "170292e5-3163-43b4-88af-affb3e4c27ab",
-            "text": "",
             "type": "group",
             "enableWhen": [
               {
