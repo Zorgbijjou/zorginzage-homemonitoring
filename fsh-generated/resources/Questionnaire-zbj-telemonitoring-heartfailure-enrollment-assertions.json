@@ -1,6 +1,6 @@
 {
   "resourceType": "Questionnaire",
-  "id": "zbj-questionnaire-telemonitoring-heartfailure-enrollment",
+  "id": "zbj-telemonitoring-heartfailure-enrollment-assertions",
   "meta": {
     "tag": [
       {
@@ -10,17 +10,30 @@
     ]
   },
   "language": "nl-NL",
+  "title": "Vragenlijst voor aanmelding van patienten met hartfalen voor telemonitoring",
+  "url": "https://zorgbijjou.github.io/scp-homemonitoring/Questionnaire-zbj-telemonitoring-heartfailure-enrollment-assertions|0.3",
   "identifier": [
     {
-      "system": "urn:oid:2.16.840.1.113883.2.4.3.224",
-      "value": "urn:uuid:ca893f5c-2868-4349-bc0f-66f67d4ab3a2"
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:4803c717-d753-4613-9466-4f8adc85249e"
     }
   ],
   "status": "draft",
+  "publisher": "Zorg bij jou B.V.",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://zorgbijjou.nl"
+        }
+      ]
+    }
+  ],
   "experimental": false,
-  "date": "2024-09-02T13:40:17Z",
+  "date": "2024-12-11",
   "effectivePeriod": {
-    "start": "2024-09-02T13:40:17Z"
+    "start": "2024-12-11"
   },
   "useContext": [
     {
@@ -99,26 +112,43 @@
     {
       "linkId": "245f3b7e-47d2-4b78-b751-fb04f38b17b9",
       "text": "Selecteer het Meetprotocol",
+      "code": [
+        {
+          "code": "362981000",
+          "system": "http://snomed.info/sct",
+          "display": "kwalificatiewaarde"
+        }
+      ],
       "type": "choice",
       "required": true,
       "answerOption": [
         {
-          "valueString": "Instabiel hartfalen"
+          "valueCoding": {
+            "code": "255299009",
+            "system": "http://snomed.info/sct",
+            "display": "Instabiel"
+          }
         },
         {
-          "valueString": "Stabiel hartfalen"
+          "valueCoding": {
+            "code": "58158008",
+            "system": "http://snomed.info/sct",
+            "display": "Stabiel"
+          }
         }
       ]
     },
     {
       "linkId": "2f505566-ac92-4347-8731-840e6bc84851",
-      "text": "",
       "type": "group",
       "enableWhen": [
         {
           "question": "245f3b7e-47d2-4b78-b751-fb04f38b17b9",
           "operator": "=",
-          "answerString": "Instabiel hartfalen"
+          "answerCoding": {
+            "code": "255299009",
+            "system": "http://snomed.info/sct"
+          }
         }
       ],
       "item": [
@@ -134,39 +164,37 @@
                   }
                 ]
               }
-            }
-          ],
-          "linkId": "1b81f13b-923e-4fc8-b758-08b3f172b2de",
-          "text": "Titratie",
-          "type": "choice",
-          "repeats": true,
-          "answerOption": [
+            },
             {
-              "valueString": "Titratie"
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "code": "check-box",
-                    "system": "http://hl7.org/fhir/questionnaire-item-control"
-                  }
-                ]
-              }
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation",
+              "valueCode": "vertical"
             }
           ],
           "linkId": "dcba2829-32d8-4390-b1d4-32a5fefda539",
-          "text": "Recompensatie",
+          "text": "Vink aan indien van toepassing",
+          "code": [
+            {
+              "code": "276239002",
+              "system": "http://snomed.info/sct",
+              "display": "therapie (regime/therapie)"
+            }
+          ],
           "type": "choice",
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "Recompensatie"
+              "valueCoding": {
+                "code": "713838004",
+                "system": "http://snomed.info/sct",
+                "display": "Titratie"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "308118002",
+                "system": "http://snomed.info/sct",
+                "display": "Recompensatie"
+              }
             }
           ]
         }
@@ -174,7 +202,6 @@
     },
     {
       "linkId": "170292e5-3163-43b4-88af-affb3e4c27ab",
-      "text": "",
       "type": "group",
       "enableWhen": [
         {
@@ -193,30 +220,21 @@
                 "system": "http://unitsofmeasure.org",
                 "display": "kg"
               }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/entryFormat",
+              "valueString": "Streefgewicht '0.0'"
             }
           ],
           "linkId": "4e973bcb-bbbb-4a9f-877b-fbf45ab94361",
           "text": "Streefgewicht",
           "required": true,
           "type": "decimal",
-          "item": [
+          "code": [
             {
-              "linkId": "2f4b0b57-f48b-488b-a846-e95daffde8ed",
-              "text": "Streefgewicht *",
-              "type": "display",
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "code": "prompt",
-                        "system": "http://hl7.org/fhir/questionnaire-item-control"
-                      }
-                    ]
-                  }
-                }
-              ]
+              "code": "1078215008",
+              "system": "http://snomed.info/sct",
+              "display": "Target body weight"
             }
           ]
         },
@@ -232,15 +250,30 @@
                   }
                 ]
               }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation",
+              "valueCode": "vertical"
             }
           ],
           "linkId": "135aec2f-e410-4668-9a26-f745dc1789af",
-          "text": "",
+          "text": "Vink aan indien van toepassing",
+          "code": [
+            {
+              "code": "404684003",
+              "system": "http://snomed.info/sct",
+              "display": "klinische bevinding (bevinding)"
+            }
+          ],
           "type": "choice",
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "De patiënt is opgenomen geweest"
+              "valueCoding": {
+                "code": "266938001",
+                "system": "http://snomed.info/sct",
+                "display": "De patiënt is opgenomen geweest"
+              }
             }
           ]
         },
@@ -259,39 +292,43 @@
             }
           ],
           "linkId": "345ca4a3-1bc8-4358-8d78-783c05953261",
-          "text": "",
+          "code": [
+            {
+              "code": "404684003",
+              "system": "http://snomed.info/sct",
+              "display": "klinische bevinding (bevinding)"
+            }
+          ],
           "type": "choice",
+          "required": true,
           "answerOption": [
             {
-              "valueString": "De patiënt beschikt over een weegschaal en bloeddrukmeter (of is bereid deze aan te schaffen)"
+              "valueCoding": {
+                "code": "735333005",
+                "system": "http://snomed.info/sct",
+                "display": "De patiënt beschikt over een weegschaal en bloeddrukmeter (of is bereid deze aan te schaffen)"
+              }
             }
           ]
         },
         {
-          "linkId": "be4b671d-f91f-4fc3-a6d8-fcafa8e67161",
-          "text": "",
-          "type": "text",
-          "repeats": false,
-          "item": [
+          "extension": [
             {
-              "linkId": "c79989b2-63c0-4988-b0a3-e088f82d6096",
-              "text": "Notitie (optioneel)",
-              "type": "display",
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "code": "prompt",
-                        "system": "http://hl7.org/fhir/questionnaire-item-control"
-                      }
-                    ]
-                  }
-                }
-              ]
+              "url": "http://hl7.org/fhir/StructureDefinition/entryFormat",
+              "valueString": "Notitie  (optioneel)"
             }
-          ]
+          ],
+          "linkId": "be4b671d-f91f-4fc3-a6d8-fcafa8e67161",
+          "text": "Notitie",
+          "code": [
+            {
+              "code": "11221000146107",
+              "system": "http://snomed.info/sct",
+              "display": "notitie (gegevensobject)"
+            }
+          ],
+          "type": "text",
+          "repeats": false
         }
       ]
     },
@@ -322,12 +359,23 @@
             }
           ],
           "linkId": "295a22d7-d0ff-4546-b2a0-ce46beeba086",
-          "text": "De patiënt heeft hulp nodig bij het downloaden en inloggen in de app",
+          "text": "Vink aan indien van toepassing",
+          "code": [
+            {
+              "code": "404684003",
+              "system": "http://snomed.info/sct",
+              "display": "klinische bevinding (bevinding)"
+            }
+          ],
           "type": "choice",
           "repeats": true,
           "answerOption": [
             {
-              "valueString": "De patiënt heeft hulp nodig"
+              "valueCoding": {
+                "code": "761731000000100",
+                "system": "http://snomed.info/sct",
+                "display": "De patiënt heeft hulp nodig bij het downloaden en inloggen in de app"
+              }
             }
           ]
         }
