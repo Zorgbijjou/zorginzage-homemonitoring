@@ -119,6 +119,7 @@ Usage: #example
 * item[=].item[=].extension.valueString = "Notitie (optioneel)"
 * item[=].item[=].linkId = "be4b671d-f91f-4fc3-a6d8-fcafa8e67161"
 * item[=].item[=].text = "Notitie"
+* item[=].item[=].code = $sct#11221000146107 "notitie (gegevensobject)"
 * item[=].item[=].type = #text
 * item[=].item[=].repeats = false
 
@@ -261,6 +262,7 @@ Usage: #example
 * item[=].item[=].extension.valueString = "Notitie  (optioneel)"
 * item[=].item[=].linkId = "be4b671d-f91f-4fc3-a6d8-fcafa8e67161"
 * item[=].item[=].text = "Notitie"
+* item[=].item[=].code = $sct#11221000146107 "notitie (gegevensobject)"
 * item[=].item[=].type = #text
 * item[=].item[=].repeats = false
 
