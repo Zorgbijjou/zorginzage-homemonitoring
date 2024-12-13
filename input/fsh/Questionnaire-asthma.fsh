@@ -2,7 +2,7 @@ Instance: zbj-telemonitoring-asthma-enrollment
 InstanceOf: Questionnaire
 Usage: #example
 * meta.tag = $FHIR-version#4.0.1
-* contained[0] = YesNo
+// * contained[0] = YesNo
 * language = #nl-NL
 * title = "Vragenlijst voor aanmelding van patienten met astma voor telemonitoring"
 * url = "https://zorgbijjou.github.io/scp-homemonitoring/Questionnaire-zbj-telemonitoring-asthma-enrollment%7C0.1"
