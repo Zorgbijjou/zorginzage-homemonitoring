@@ -12,8 +12,8 @@
     "fshName": "zbj-bundle-questionnaires",
     "fshType": "Instance",
     "fshFile": "Questionnaire.fsh",
-    "startLine": 158,
-    "endLine": 164
+    "startLine": 160,
+    "endLine": 166
   },
   {
     "outputFile": "HealthcareService-zbj-healthcareservice-telemonitoring.json",
@@ -28,8 +28,8 @@
     "fshName": "zbj-telemonitoring-heartfailure-enrollment-assertions",
     "fshType": "Instance",
     "fshFile": "Questionnaire.fsh",
-    "startLine": 167,
-    "endLine": 284
+    "startLine": 169,
+    "endLine": 288
   },
   {
     "outputFile": "Questionnaire-zbj-telemonitoring-heartfailure-enrollment.json",
@@ -37,6 +37,6 @@
     "fshType": "Instance",
     "fshFile": "Questionnaire.fsh",
     "startLine": 7,
-    "endLine": 140
+    "endLine": 142
   }
 ]

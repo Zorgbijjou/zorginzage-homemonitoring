@@ -126,7 +126,7 @@ Usage: #example
 * item[+].linkId = "2bc0b73f-506a-48a4-994d-fe355a5825f3"
 * item[=].text = "Begeleiding bij onboarding"
 * item[=].text.extension[+].url = "http://hl7.org/fhir/StructureDefinition/rendering-style"
-* item[=].text.extension[+].valueString = "font-size: 1.25rem;"
+* item[=].text.extension[=].valueString = "font-size: 1.25rem;"
 * item[=].type = #group
 * item[=].enableWhen.question = "245f3b7e-47d2-4b78-b751-fb04f38b17b9"
 * item[=].enableWhen.operator = #exists
@@ -272,7 +272,7 @@ Usage: #example
 * item[+].linkId = "2bc0b73f-506a-48a4-994d-fe355a5825f3"
 * item[=].text = "Begeleiding bij onboarding"
 * item[=].text.extension[+].url = "http://hl7.org/fhir/StructureDefinition/rendering-style"
-* item[=].text.extension[+].valueString = "font-size: 1.25rem;"
+* item[=].text.extension[=].valueString = "font-size: 1.25rem;"
 * item[=].type = #group
 * item[=].enableWhen.question = "245f3b7e-47d2-4b78-b751-fb04f38b17b9"
 * item[=].enableWhen.operator = #exists
