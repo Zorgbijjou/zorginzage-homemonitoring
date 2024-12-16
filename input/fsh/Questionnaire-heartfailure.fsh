@@ -33,7 +33,7 @@ Usage: #example
 * item[=].answerOption[=].initialSelected = true
 
 * item[+].linkId = "245f3b7e-47d2-4b78-b751-fb04f38b17b9"
-* item[=].text = "Selecteer het Meetprotocol"
+* item[=].text = "Meetprotocol"
 * item[=].code = $sct#362981000 "kwalificatiewaarde"
 * item[=].type = #choice
 * item[=].required = true
@@ -172,7 +172,7 @@ Usage: #example
 * item[=].initial.valueString = "Hartfalen"
 
 * item[+].linkId = "245f3b7e-47d2-4b78-b751-fb04f38b17b9"
-* item[=].text = "Selecteer het Meetprotocol"
+* item[=].text = "Meetprotocol"
 * item[=].code = $sct#362981000 "kwalificatiewaarde"
 * item[=].type = #choice
 * item[=].required = true
