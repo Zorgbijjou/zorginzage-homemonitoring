@@ -168,6 +168,14 @@
     {
       "linkId": "ec55071b-b4b0-44c9-927c-9df3b9508afc",
       "text": "Begeleiding bij onboarding",
+      "_text": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/rendering-style",
+            "valueString": "font-size: 1.25rem;"
+          }
+        ]
+      },
       "type": "group",
       "item": [
         {
