@@ -54,6 +54,8 @@ Usage: #example
 
 * item[+].linkId = "ec55071b-b4b0-44c9-927c-9df3b9508afc"
 * item[=].text = "Begeleiding bij onboarding"
+* item[=].text.extension[+].url = "http://hl7.org/fhir/StructureDefinition/rendering-style"
+* item[=].text.extension[=].valueString = "font-size: 1.25rem;"
 * item[=].type = #group
 
 * item[=].item[+].extension[+].url = "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl"

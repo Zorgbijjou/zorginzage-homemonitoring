@@ -8,7 +8,6 @@ Description: "Bundle containing Questionnaire instances"
 * insert BundleEntry(zbj-telemonitoring-asthma-enrollment, #PUT, Questionnaire?identifier=urn:uuid:503d6f64-27af-4480-ad99-e357cea2decb)
 
 
-
 Instance: YesNo
 InstanceOf: ValueSet
 Usage: #inline
